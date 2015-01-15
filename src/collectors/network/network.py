@@ -109,7 +109,7 @@ class NetworkCollector(diamond.collector.Collector):
             stats = results[device]
             for s, v in stats.items():
                 # Get Metric Name
-                metric_name = '.'.join([device, s])
+                metric_name = '.'.join([device.replace('.', '_'), s])
                 # Get Metric Value
                 metric_value = self.derivative(metric_name,
                                                long(v),
