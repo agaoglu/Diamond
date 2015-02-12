@@ -59,4 +59,4 @@ then
     cat src/diamond/version.py.tmpl | sed "s/__VERSIONTOKENHERE__/${VERSION}/g" > src/diamond/version.py
 fi
 
-echo $VERSION
+echo ${VERSION}.nkt

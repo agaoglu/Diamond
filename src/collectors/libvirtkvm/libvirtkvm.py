@@ -10,6 +10,7 @@ Uses libvirt to harvest per KVM instance stats
 """
 
 import diamond.collector
+from diamond.collector import str_to_bool
 
 try:
     from xml.etree import ElementTree
@@ -68,6 +69,13 @@ as cummulative nanoseconds since VM creation if this is True."""
         })
         return config
 
+    def process_config(self):
+        super(LibvirtKVMCollector, self).process_config()
+        if 'sort_by_uuid' in self.config:
+            self.config['sort_by_uuid'] = str_to_bool(self.config['sort_by_uuid'])
+        if 'cpu_absolute' in self.config:
+            self.config['cpu_absolute'] = str_to_bool(self.config['cpu_absolute'])
+
     def get_devices(self, dom, type):
         devices = []
 
@@ -111,15 +119,18 @@ as cummulative nanoseconds since VM creation if this is True."""
                 name = dom.name()
 
             # CPU stats
-            vcpus = dom.getCPUStats(True, 0)
-            totalcpu = 0
-            idx = 0
-            for vcpu in vcpus:
-                cputime = vcpu['cpu_time']
-                self.report_cpu_metric('cpu.%s.time' % idx, cputime, name)
-                idx += 1
-                totalcpu += cputime
-            self.report_cpu_metric('cpu.total.time', totalcpu, name)
+            for (i, times) in enumerate(dom.getCPUStats(False)):
+                self.report_cpu_metric('cpu.%d.vcpu_time' % i, times["vcpu_time"], name)
+                self.report_cpu_metric('cpu.%d.cpu_time' % i, times["cpu_time"], name)
+            total = dom.getCPUStats(True)[0]
+            self.report_cpu_metric('cpu.total.cpu_time', total['cpu_time'], name)
+            self.report_cpu_metric('cpu.total.system_time', total['system_time'], name)
+            self.report_cpu_metric('cpu.total.user_time', total['user_time'], name)
+
+            # VCPU stats
+            (vcpus, cpumap) = dom.vcpus()
+            for (i, state, time, r) in vcpus:
+                self.report_cpu_metric('vcpu.%d.time' % i, time, name)
 
             # Disk stats
             disks = self.get_disk_devices(dom)
