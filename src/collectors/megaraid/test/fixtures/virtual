@@ -1,0 +1,131 @@
+                                     
+
+Adapter 0 -- Virtual Drive Information:
+Virtual Drive: 0 (Target Id: 0)
+Name                :Virtual Disk 0
+RAID Level          : Primary-1, Secondary-0, RAID Level Qualifier-0
+Size                : 278.875 GB
+Sector Size         : 512
+Mirror Data         : 278.875 GB
+State               : Optimal
+Strip Size          : 64 KB
+Number Of Drives    : 2
+Span Depth          : 1
+Default Cache Policy: WriteBack, ReadAdaptive, Direct, No Write Cache if Bad BBU
+Current Cache Policy: WriteBack, ReadAdaptive, Direct, No Write Cache if Bad BBU
+Default Access Policy: Read/Write
+Current Access Policy: Read/Write
+Disk Cache Policy   : Disk's Default
+Encryption Type     : None
+Bad Blocks Exist: No
+Is VD Cached: Yes
+Cache Cade Type : Read Only
+
+
+Virtual Drive: 1 (Target Id: 1)
+Name                :Virtual Disk 1
+RAID Level          : Primary-0, Secondary-0, RAID Level Qualifier-0
+Size                : 1.818 TB
+Sector Size         : 512
+Parity Size         : 0
+State               : Optimal
+Strip Size          : 64 KB
+Number Of Drives    : 1
+Span Depth          : 1
+Default Cache Policy: WriteBack, ReadAdaptive, Direct, No Write Cache if Bad BBU
+Current Cache Policy: WriteBack, ReadAdaptive, Direct, No Write Cache if Bad BBU
+Default Access Policy: Read/Write
+Current Access Policy: Read/Write
+Disk Cache Policy   : Disk's Default
+Encryption Type     : None
+Bad Blocks Exist: Yes
+Is VD Cached: Yes
+Cache Cade Type : Read Only
+
+
+Virtual Drive: 2 (Target Id: 2)
+Name                :Virtual Disk 2
+RAID Level          : Primary-0, Secondary-0, RAID Level Qualifier-0
+Size                : 1.818 TB
+Sector Size         : 512
+Parity Size         : 0
+State               : Optimal
+Strip Size          : 64 KB
+Number Of Drives    : 1
+Span Depth          : 1
+Default Cache Policy: WriteBack, ReadAdaptive, Direct, No Write Cache if Bad BBU
+Current Cache Policy: WriteBack, ReadAdaptive, Direct, No Write Cache if Bad BBU
+Default Access Policy: Read/Write
+Current Access Policy: Read/Write
+Disk Cache Policy   : Disk's Default
+Encryption Type     : None
+Bad Blocks Exist: No
+Is VD Cached: Yes
+Cache Cade Type : Read Only
+
+
+Virtual Drive: 3 (Target Id: 3)
+Name                :Virtual Disk 3
+RAID Level          : Primary-0, Secondary-0, RAID Level Qualifier-0
+Size                : 1.818 TB
+Sector Size         : 512
+Parity Size         : 0
+State               : Optimal
+Strip Size          : 64 KB
+Number Of Drives    : 1
+Span Depth          : 1
+Default Cache Policy: WriteBack, ReadAdaptive, Direct, No Write Cache if Bad BBU
+Current Cache Policy: WriteBack, ReadAdaptive, Direct, No Write Cache if Bad BBU
+Default Access Policy: Read/Write
+Current Access Policy: Read/Write
+Disk Cache Policy   : Disk's Default
+Encryption Type     : None
+Bad Blocks Exist: Yes
+Is VD Cached: Yes
+Cache Cade Type : Read Only
+
+
+Virtual Drive: 4 (Target Id: 4)
+Name                :Virtual Disk 4
+RAID Level          : Primary-0, Secondary-0, RAID Level Qualifier-0
+Size                : 1.818 TB
+Sector Size         : 512
+Parity Size         : 0
+State               : Optimal
+Strip Size          : 64 KB
+Number Of Drives    : 1
+Span Depth          : 1
+Default Cache Policy: WriteBack, ReadAdaptive, Direct, No Write Cache if Bad BBU
+Current Cache Policy: WriteBack, ReadAdaptive, Direct, No Write Cache if Bad BBU
+Default Access Policy: Read/Write
+Current Access Policy: Read/Write
+Disk Cache Policy   : Disk's Default
+Encryption Type     : None
+Bad Blocks Exist: No
+Is VD Cached: Yes
+Cache Cade Type : Read Only
+
+
+Virtual Drive: 5 (Target Id: 5)
+Name                :Virtual Disk 5
+RAID Level          : Primary-0, Secondary-0, RAID Level Qualifier-0
+Size                : 1.818 TB
+Sector Size         : 512
+Parity Size         : 0
+State               : Optimal
+Strip Size          : 64 KB
+Number Of Drives    : 1
+Span Depth          : 1
+Default Cache Policy: WriteBack, ReadAdaptive, Direct, No Write Cache if Bad BBU
+Current Cache Policy: WriteThrough, ReadAdaptive, Direct, No Write Cache if Bad BBU
+Default Access Policy: Read/Write
+Current Access Policy: Read/Write
+Disk Cache Policy   : Disk's Default
+Encryption Type     : None
+Bad Blocks Exist: No
+Is VD Cached: Yes
+Cache Cade Type : Read Only
+
+
+
+Exit Code: 0x00
