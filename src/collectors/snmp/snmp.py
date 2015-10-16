@@ -166,7 +166,7 @@ class SNMPCollector(diamond.collector.Collector):
                 return
 
         # Convert to a simple readable format
-        name = name.prettyPrint()
+        name = str(name)
         name = re.sub(r'^{0}'.format(oid), basename, name)
 
         self.log.debug(
@@ -175,13 +175,7 @@ class SNMPCollector(diamond.collector.Collector):
             )
         )
 
-        path = '.'.join([
-            'devices',
-            device,
-            name,
-        ])
-
-        self.publish_gauge(path, value)
+        self.publish_gauge(name, value, instance=device)
 
     def get(self, oid, host, port, community):
         """
@@ -190,7 +184,7 @@ class SNMPCollector(diamond.collector.Collector):
         auth = self.create_auth(community)
         transport = self.create_transport(host, port)
         rows = self.snmp_get(oid, auth, transport)
-        return dict((k.prettyPrint(), v.prettyPrint()) for k, v in rows)
+        return dict((str(k), v.prettyPrint()) for k, v in rows)
 
     def walk(self, oid, host, port, community):
         """
@@ -199,7 +193,7 @@ class SNMPCollector(diamond.collector.Collector):
         auth = self.create_auth(community)
         transport = self.create_transport(host, port)
         rows = self.snmp_walk(oid, auth, transport)
-        return dict((k.prettyPrint(), v.prettyPrint()) for k, v in rows)
+        return dict((str(k), v.prettyPrint()) for k, v in rows)
 
     def snmp_get(self, oid, auth, transport):
         """
