@@ -29,7 +29,7 @@ class LibvirtKVMCollector(diamond.collector.Collector):
         'read_bytes':  1,
         'write_reqs':  2,
         'write_bytes': 3
-        }
+    }
 
     vifStats = {
         'rx_bytes':   0,
@@ -40,10 +40,11 @@ class LibvirtKVMCollector(diamond.collector.Collector):
         'tx_packets': 5,
         'tx_errors':  6,
         'tx_drops':   7
-        }
+    }
 
     def get_default_config_help(self):
-        config_help = super(LibvirtKVMCollector, self).get_default_config_help()
+        config_help = super(LibvirtKVMCollector,
+                            self).get_default_config_help()
         config_help.update({
             'uri': """The libvirt connection URI. By default it's
 'qemu:///system'. One decent option is
@@ -97,7 +98,7 @@ as cummulative nanoseconds since VM creation if this is True."""
 
     def report_cpu_metric(self, statname, value, instance):
         # Value in cummulative nanoseconds
-        if self.config['cpu_absolute'] is True:
+        if str_to_bool(self.config['cpu_absolute']):
             metric = value
         else:
             # Nanoseconds (10^9), however, we want to express in 100%
@@ -113,7 +114,7 @@ as cummulative nanoseconds since VM creation if this is True."""
 
         conn = libvirt.openReadOnly(self.config['uri'])
         for dom in [conn.lookupByID(n) for n in conn.listDomainsID()]:
-            if self.config['sort_by_uuid'] is True:
+            if str_to_bool(self.config['sort_by_uuid']):
                 name = dom.UUIDString()
             else:
                 name = dom.name()

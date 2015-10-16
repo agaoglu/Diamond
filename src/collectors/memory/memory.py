@@ -81,8 +81,8 @@ class MemoryCollector(diamond.collector.Collector):
                     name = name.rstrip(':')
                     value = int(value)
 
-                    if (name not in _KEY_MAPPING
-                            and 'detailed' not in self.config):
+                    if ((name not in _KEY_MAPPING and
+                         'detailed' not in self.config)):
                         continue
 
                     for unit in self.config['byte_unit']:
@@ -103,8 +103,14 @@ class MemoryCollector(diamond.collector.Collector):
                 self.log.error('No memory metrics retrieved')
                 return None
 
-            phymem_usage = psutil.phymem_usage()
-            virtmem_usage = psutil.virtmem_usage()
+            # psutil.phymem_usage() and psutil.virtmem_usage() are deprecated.
+            if hasattr(psutil, "phymem_usage"):
+                phymem_usage = psutil.phymem_usage()
+                virtmem_usage = psutil.virtmem_usage()
+            else:
+                phymem_usage = psutil.virtual_memory()
+                virtmem_usage = psutil.swap_memory()
+
             units = 'B'
 
             for unit in self.config['byte_unit']:
