@@ -20,7 +20,7 @@ may try TSDBHandler.
 #### Configuration
 
 Enable this Handler
- 
+
  * handlers = diamond.handler.opentsdb.OpenTSDBHandler,
 
  * servers = List of opentsdb servers
@@ -91,7 +91,7 @@ class OpenTSDBHandler(Handler):
         # Force tags to be a list
         if isinstance(tags, basestring):
             tags = [tags]
-        # Parse tags 
+        # Parse tags
         tags = [tuple(t.split("=")) for t in tags if t.find("=") > 0]
         self.tags = dict(tags)
 
@@ -151,11 +151,15 @@ class OpenTSDBHandler(Handler):
         Convert metric to OpenTSDB2 HTTP API format and send
         """
 
-        tags = {"hostname": metric.host}
-        tags.update(self.tags)
+        tags = {}
+        if metric.host is not None:
+            tags.update({'hostname': metric.host})
         mpp = metric.path.split('.')
         if mpp[0] == 'instances':
             tags.update({'instance': mpp[1]})
+        if mpp[0] == 'devices':
+            tags.update({'device': mpp[1]})
+        tags.update(self.tags)
         metricname = u'.'.join(mpp[2:])
         for rgx in self.tagsinmetric:
             rgm = rgx.match(metricname)
