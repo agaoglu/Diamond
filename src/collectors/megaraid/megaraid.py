@@ -88,7 +88,7 @@ class MegaRAIDCollector(diamond.collector.Collector):
                     metrics["pd.adapter%d.phy%d.other_errors" % (adapter, slot)] = int(value)
                 if key == "Predictive Failure Count":
                     metrics["pd.adapter%d.phy%d.predictive_failures" % (adapter, slot)] = int(value)
-                if key == "Drive Temperature":
+                if key == "Drive Temperature" and value != "N/A":
                     metrics["pd.adapter%d.phy%d.temperature" % (adapter, slot)] = int(value[:value.find('C')])
                 if key == "Drive has flagged a S.M.A.R.T alert":
                     metrics["pd.adapter%d.phy%d.smart_alert" % (adapter, slot)] = int(str_to_bool(value))
